@@ -1,0 +1,5 @@
+* @SOVRN144
+docs/** @SOVRN144
+tools/** @SOVRN144
+templates/github/actions/secrets/** @SOVRN144
+apps/orchestrator/** @SOVRN144
