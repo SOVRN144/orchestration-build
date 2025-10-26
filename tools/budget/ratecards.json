@@ -1,0 +1,45 @@
+{
+  "openai": {
+    "cache_discount_input": 0.5,
+    "batch_discount": 0.5,
+    "models": {
+      "gpt-4o-mini": {
+        "input_per_million": 0.075,
+        "output_per_million": 0.3
+      },
+      "gpt-4o": {
+        "input_per_million": 1.25,
+        "output_per_million": 5.0
+      },
+      "gpt-5-thinking": {
+        "input_per_million": 0.625,
+        "output_per_million": 5.0
+      },
+      "o1": {
+        "input_per_million": 7.5,
+        "output_per_million": 30.0
+      }
+    }
+  },
+  "anthropic": {
+    "cache_creation_multiplier": {
+      "5m": 1.25,
+      "1h": 2.0
+    },
+    "cache_read_discount_input": 0.1,
+    "models": {
+      "claude-3-haiku": {
+        "input_per_million": 0.25,
+        "output_per_million": 1.25
+      },
+      "claude-3-5-sonnet": {
+        "input_per_million": 3.0,
+        "output_per_million": 15.0
+      },
+      "claude-3-opus": {
+        "input_per_million": 15.0,
+        "output_per_million": 75.0
+      }
+    }
+  }
+}

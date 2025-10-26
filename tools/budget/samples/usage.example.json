@@ -1,0 +1,23 @@
+{
+  "currency": "USD",
+  "max_usd": 5.5,
+  "turns": [
+    {
+      "provider": "openai",
+      "model": "gpt-4o-mini",
+      "input": 12000,
+      "output": 1800,
+      "cached_input": 6000,
+      "batch": false
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet",
+      "input": 9000,
+      "output": 1200,
+      "anth_cache_create": 2000,
+      "anth_cache_window": "5m",
+      "anth_cache_read": 3000
+    }
+  ]
+}

@@ -1,0 +1,1071 @@
+{
+  "version": "1.0",
+  "generated_at": "2025-10-25T03:29:16.156180Z",
+  "owner": "S\u2a00VRN // Lyra Orchestrator",
+  "defaults": {
+    "recency_days": 180,
+    "prefer_domains": [
+      "platform.openai.com",
+      "openai.com",
+      "docs.anthropic.com",
+      "anthropic.com",
+      "docs.github.com",
+      "octokit.github.io",
+      "coderabbit.ai",
+      "docs.coderabbit.ai",
+      "github.com/features/copilot",
+      "learn.microsoft.com",
+      "opentelemetry.io",
+      "canvas.instructure.com",
+      "vitejs.dev",
+      "nodejs.org"
+    ],
+    "return_schema": {
+      "source_url": "",
+      "source_title": "",
+      "provider_or_tool": "",
+      "last_updated_date": "",
+      "answers": {},
+      "key_limits": {
+        "context_tokens": "",
+        "rpm": "",
+        "tpm": "",
+        "concurrency_notes": ""
+      },
+      "pricing": {
+        "input_per_million": "",
+        "output_per_million": ""
+      },
+      "capabilities": [],
+      "compliance": {
+        "data_retention": "",
+        "training_opt_out": "",
+        "region_routing": ""
+      },
+      "snippets": []
+    },
+    "redaction_rules": [
+      "Mask secrets, API keys, and emails in snippets",
+      "Strip PII and repo names unless public",
+      "No full-copy tables >25 rows; summarize instead"
+    ]
+  },
+  "missions": [
+    {
+      "id": "P0-Providers-Policy",
+      "phase": "0",
+      "title": "Provider pricing, limits, and data policy",
+      "objective": "Establish cost/limits/retention for OpenAI (GPT-5 Thinking), Anthropic (Claude Sonnet 4.5), GitHub Copilot Code Review, CodeRabbit",
+      "questions": [
+        "What are current pricing and token/context limits per model?",
+        "What are rpm/tpm rate limits and concurrency recommendations?",
+        "What are data retention and training opt-out defaults and how to configure?",
+        "Any regional routing / data residency guarantees relevant to ZA/EU/US?"
+      ],
+      "search": {
+        "queries": [
+          "site:platform.openai.com pricing rate limits data retention",
+          "site:docs.anthropic.com \"Sonnet 4.5\" pricing rate limits retention",
+          "site:docs.github.com copilot code review pricing limits",
+          "site:docs.coderabbit.ai pricing plan limits"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 120
+      },
+      "extract_fields": [
+        "pricing",
+        "key_limits",
+        "capabilities",
+        "compliance"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22651 official page per provider",
+        "Provide explicit numbers (context tokens, rpm/tpm) or state 'not published'",
+        "State retention/training policy and toggles with links"
+      ],
+      "save_to": "/docs/research/p0-provider-matrix.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P0-GitHub-App-Perms",
+      "phase": "0",
+      "title": "Minimal GitHub App permissions & required checks",
+      "objective": "Define least-privilege scopes to branch/commit/PR and require status checks before merge",
+      "questions": [
+        "Which GitHub App permissions allow creating branches/commits/PRs?",
+        "How to enforce required status checks (CodeRabbit, Copilot) on protected branches?"
+      ],
+      "search": {
+        "queries": [
+          "site:docs.github.com GitHub App permissions repository contents pull requests",
+          "site:docs.github.com required status checks protected branches"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "Document scopes with screenshots/links to docs",
+        "Provide example branch protection JSON via API"
+      ],
+      "save_to": "/docs/research/p0-github-permissions.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P0_5-Monorepo-CI",
+      "phase": "0.5",
+      "title": "TS monorepo + CI bootstrap",
+      "objective": "Pick Node LTS, workspace tool, and a minimal CI pipeline that caches deps and runs tests",
+      "questions": [
+        "Which Node LTS to pin and which package manager (pnpm vs npm workspaces) is recommended in 2025?",
+        "Minimal GitHub Actions YAML for install, cache, lint, test for monorepos"
+      ],
+      "search": {
+        "queries": [
+          "site:nodejs.org release schedule LTS",
+          "site:docs.github.com actions setup-node cache pnpm workspaces",
+          "typescript monorepo best practices 2025"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p0_5-monorepo-ci.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P1-Message-Protocol",
+      "phase": "1",
+      "title": "Debate loop message schema & state machine patterns",
+      "objective": "Identify proven fields and convergence rules for propose/critique/implement/verify",
+      "questions": [
+        "What message fields do existing debate protocols use?",
+        "What convergence rules terminate the loop safely?",
+        "When to escalate to human-in-the-loop?"
+      ],
+      "search": {
+        "queries": [
+          "multi-agent debate protocol message schema propose critique implement verify",
+          "xstate state machine Node.js orchestration patterns"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p1-debate-schema.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P2-OpenAI-Agents",
+      "phase": "2",
+      "title": "OpenAI Responses/Agents capabilities",
+      "objective": "Capture tool-calling, JSON mode, streaming, error codes, retry guidance",
+      "questions": [
+        "What are the latest features of Responses/Agents APIs?",
+        "What are tool/JSON calling shapes and error/retry patterns?"
+      ],
+      "search": {
+        "queries": [
+          "site:platform.openai.com Responses API tools function calling streaming",
+          "site:platform.openai.com docs error codes retries"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 90
+      },
+      "extract_fields": [
+        "capabilities",
+        "key_limits",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: capabilities, key_limits, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p2-openai-agents.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P2-Anthropic-Messages",
+      "phase": "2",
+      "title": "Anthropic Messages API (Sonnet 4.5) capabilities",
+      "objective": "Record model IDs, tool-use parity, context window, rate limits, retry options",
+      "questions": [
+        "What are Sonnet 4.5 model IDs and context limits?",
+        "How does tool use and JSON output work?"
+      ],
+      "search": {
+        "queries": [
+          "site:docs.anthropic.com Messages API tool use JSON Sonnet 4.5",
+          "site:docs.anthropic.com rate limits retries"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 90
+      },
+      "extract_fields": [
+        "capabilities",
+        "key_limits",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: capabilities, key_limits, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p2-anthropic-messages.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P3-Octokit-Diff-PR",
+      "phase": "3",
+      "title": "Apply unified diff & open PR with provenance",
+      "objective": "Define reliable patch\u2192blob/tree\u2192commit\u2192PR flow and provenance footer",
+      "questions": [
+        "How to apply a unified diff using Octokit (blobs/trees) safely?",
+        "How to add a provenance footer and enforce checks before merge?"
+      ],
+      "search": {
+        "queries": [
+          "site:docs.github.com REST API git create blob tree",
+          "site:docs.github.com REST API pulls create",
+          "Octokit apply unified diff example"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p3-diff-pr.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P4-Budget-Context",
+      "phase": "4",
+      "title": "Token estimation, caching, truncation heuristics",
+      "objective": "Choose accurate token estimators and caching/fingerprinting rules",
+      "questions": [
+        "Best token estimation per provider and Node libs?",
+        "How to fingerprint prompts/results for stable cache hits?",
+        "Truncation heuristics that preserve instructions & relevant context"
+      ],
+      "search": {
+        "queries": [
+          "token counting estimator OpenAI Node 2025",
+          "prompt caching fingerprint content hash LLM",
+          "context management truncation heuristics RAG 2025"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p4-budget-context.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P5-Review-Bots",
+      "phase": "5",
+      "title": "Trigger CodeRabbit & Copilot Code Review",
+      "objective": "Configure auto-reviews and capture typical findings categories",
+      "questions": [
+        "How to auto-trigger reviews on PR open/update?",
+        "What permissions/config keys are required?",
+        "Which finding categories are reliable (security/style/tests)?"
+      ],
+      "search": {
+        "queries": [
+          "site:docs.coderabbit.ai github app configuration",
+          "GitHub Copilot Code Review configuration required checks"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p5-review-bots.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P6-RAG-Code",
+      "phase": "6",
+      "title": "Repo-aware RAG for source code",
+      "objective": "Pick embedding model, chunking recipe, and lightweight store",
+      "questions": [
+        "Which embeddings provide best value for code?",
+        "Recommended chunk size/overlap for repos?",
+        "SQLite FTS5 vs pgvector vs FAISS tradeoffs"
+      ],
+      "search": {
+        "queries": [
+          "code embeddings benchmark 2025",
+          "chunking source code embeddings lines overlap",
+          "sqlite fts5 vs pgvector vs faiss code search"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p6-rag-code.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P7-Debate-Hardening",
+      "phase": "7",
+      "title": "Risk taxonomy & critique rubric",
+      "objective": "Adopt OWASP/CWE references and critique checklists",
+      "questions": [
+        "Which OWASP/CWE items should be first-class in risks?",
+        "What critique rubric ensures traceable reasoning & convergence?"
+      ],
+      "search": {
+        "queries": [
+          "OWASP Top 10 2025 summary",
+          "MITRE CWE Top 25 2025",
+          "code review rubric security reliability performance"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p7-risk-rubric.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P8-Test-Writer",
+      "phase": "8",
+      "title": "LLM-authored test patterns",
+      "objective": "Catalog safe practices for generating tests and mutation testing tools",
+      "questions": [
+        "How to generate tests that avoid overfitting?",
+        "Which mutation testing tools integrate best with Node?"
+      ],
+      "search": {
+        "queries": [
+          "llm generated tests best practices 2025",
+          "mutation testing Node js tools"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p8-test-writer.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P9-Policy-DSL",
+      "phase": "9",
+      "title": "Secrets scanning, license compliance, and policy DSL",
+      "objective": "Pick scanners and show a tiny Rego/OPA policy embedded in Node",
+      "questions": [
+        "Gitleaks/TruffleHog CI recipes and false-positive tuning?",
+        "Licensee/OSS Review Toolkit for license compatibility?",
+        "How to embed simple OPA policy checks in Node?"
+      ],
+      "search": {
+        "queries": [
+          "gitleaks github actions setup false positives",
+          "trufflehog github action example",
+          "licensee github action",
+          "open policy agent Rego node example"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p9-policy-dsl.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P10-Observability",
+      "phase": "10",
+      "title": "OpenTelemetry for Node + prompt redaction",
+      "objective": "Instrument turns with spans and redact sensitive prompt data",
+      "questions": [
+        "Minimal OTEL setup (traces/metrics) for Node?",
+        "Best-practice redaction patterns for prompts/outputs?"
+      ],
+      "search": {
+        "queries": [
+          "OpenTelemetry Node quickstart traces metrics 2025",
+          "LLM prompts logging redaction best practices"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p10-observability.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P11-Operator-UI",
+      "phase": "11",
+      "title": "Thin operator UI (Vite + WS) with auth",
+      "objective": "Stream orchestrator events to a React panel with GitHub OAuth",
+      "questions": [
+        "Vite + React + WebSocket minimal example?",
+        "GitHub OAuth flow for local dev?"
+      ],
+      "search": {
+        "queries": [
+          "vite react websocket minimal example",
+          "github oauth app web application flow"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p11-operator-ui.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P12-Parallelism",
+      "phase": "12",
+      "title": "Concurrency, rate limits, and jittered backoff",
+      "objective": "Set safe concurrency and backoff across providers; budget sharding examples",
+      "questions": [
+        "What are rpm/tpm and concurrency caps per provider?",
+        "Recommended exponential backoff with jitter recipe?",
+        "How to partition budget across parallel shards?"
+      ],
+      "search": {
+        "queries": [
+          "openai rate limits concurrent requests 2025",
+          "anthropic rate limit guidance concurrency 2025",
+          "exponential backoff jitter best practice"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 90
+      },
+      "extract_fields": [
+        "key_limits",
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: key_limits, answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p12-parallelism.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P13-Governance",
+      "phase": "13",
+      "title": "Human-in-the-loop governance & templates",
+      "objective": "CODEOWNERS, required reviews, and rationale bundle PR templates",
+      "questions": [
+        "How to enforce CODEOWNERS and required reviews?",
+        "Example PR template collecting claims/risks/rollback plan"
+      ],
+      "search": {
+        "queries": [
+          "site:docs.github.com CODEOWNERS required reviews",
+          "pull request template rationale risk rollback example"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p13-governance.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P14-Multi-Agent-Consensus",
+      "phase": "14",
+      "title": "Role policies and consensus strategies",
+      "objective": "Design tie-breakers and role prompts for Security Architect/Doc Writer/Refactorer/Perf-Tuner",
+      "questions": [
+        "What lightweight consensus/voting strategies work for agents?",
+        "Prompting patterns per role to reduce conflict?"
+      ],
+      "search": {
+        "queries": [
+          "multi-agent consensus voting tie-breaker protocol",
+          "prompt patterns documentation writer refactor bot performance tuning"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p14-multi-agent-consensus.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P15-Reliability-SLOs",
+      "phase": "15",
+      "title": "Circuit breakers, idempotency, and snapshot/restore",
+      "objective": "Ensure durable execution with SLO tracking",
+      "questions": [
+        "Node circuit breaker libraries and examples?",
+        "Idempotency keys for outbound HTTP calls?",
+        "Snapshot/restore patterns for workflow engines?"
+      ],
+      "search": {
+        "queries": [
+          "node circuit breaker library opossum example",
+          "idempotency keys http node best practices",
+          "workflow snapshot restore durable execution"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p15-reliability-slo.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P16-Adapter-Contract",
+      "phase": "16",
+      "title": "Provider adapter interface & conformance tests",
+      "objective": "Draft minimal adapter contract and plugin discovery via manifest",
+      "questions": [
+        "What is a clean adapter interface shape for providers?",
+        "How to design a small conformance test suite?",
+        "Manifest-based plugin discovery patterns in Node?"
+      ],
+      "search": {
+        "queries": [
+          "adapter interface design typescript",
+          "plugin architecture manifest discovery node",
+          "conformance tests adapter pattern examples"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p16-adapter-contract.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    },
+    {
+      "id": "P17-Domain-Integrations",
+      "phase": "17",
+      "title": "Canvas MCP & Atlas bounds",
+      "objective": "Confirm Canvas API quotas/OAuth and Atlas agent constraints; gather templates for JWT and audio tooling",
+      "questions": [
+        "Canvas API rate limits and OAuth steps?",
+        "ChatGPT Atlas capability bounds (domains, time/step limits)?",
+        "Good public templates for JWT auth and audio microservices?"
+      ],
+      "search": {
+        "queries": [
+          "site:canvas.instructure.com/doc api rate limit oauth",
+          "ChatGPT Atlas capabilities limits 2025",
+          "JWT auth Node template best practice 2025",
+          "audio tooling microservice template"
+        ],
+        "prefer_domains": [
+          "platform.openai.com",
+          "openai.com",
+          "docs.anthropic.com",
+          "anthropic.com",
+          "docs.github.com",
+          "octokit.github.io",
+          "coderabbit.ai",
+          "docs.coderabbit.ai",
+          "github.com/features/copilot",
+          "learn.microsoft.com",
+          "opentelemetry.io",
+          "canvas.instructure.com",
+          "vitejs.dev",
+          "nodejs.org"
+        ],
+        "recency_days": 180
+      },
+      "extract_fields": [
+        "answers",
+        "snippets"
+      ],
+      "return_schema_ref": "defaults.return_schema",
+      "acceptance_criteria": [
+        "\u22652 reputable sources, at least 1 official doc",
+        "All fields populated: answers, snippets",
+        "Include last_updated_date and direct doc anchors where possible"
+      ],
+      "save_to": "/docs/research/p17-domain-integrations.json",
+      "dependencies": [],
+      "notes": "",
+      "legal_sensitivity": "low"
+    }
+  ]
+}

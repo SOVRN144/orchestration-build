@@ -1,0 +1,39 @@
+{
+  "generated_at": "2025-10-25",
+  "default_region": "US",
+  "sensitive_region": "EU",
+  "providers": {
+    "openai": {
+      "training_opt_in": false,
+      "zero_data_retention": true,
+      "modified_abuse_monitoring": true,
+      "endpoint": "us.api.openai.com",
+      "eu_endpoint": "eu.api.openai.com",
+      "dpa_link": "https://openai.com/policies/data-processing-addendum",
+      "subprocessors_link": "https://platform.openai.com/subprocessors"
+    },
+    "anthropic": {
+      "training_opt_in": false,
+      "zero_data_retention": true,
+      "endpoint": "api.anthropic.com",
+      "bedrock": true,
+      "vertex": true,
+      "dpa_link": "https://www.anthropic.com/legal/data-processing-addendum",
+      "subprocessors_link": "https://www.anthropic.com/subprocessors"
+    },
+    "github_copilot_code_review": {
+      "plan": "Business",
+      "retain_prompts": false,
+      "retain_suggestions": false,
+      "training_on_customer_data": false,
+      "dpa_link": "https://github.com/customer-terms/github-data-protection-agreement"
+    },
+    "coderabbit": {
+      "training_on_customer_data": false,
+      "code_retention": "memory_only",
+      "embeddings_persist": true,
+      "embeddings_opt_out": true,
+      "dpa_link": "https://coderabbit.ai/dpa"
+    }
+  }
+}

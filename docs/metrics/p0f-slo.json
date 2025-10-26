@@ -1,0 +1,40 @@
+{
+  "updated": "2025-10-25",
+  "velocity": {
+    "time_to_merge_p95_hours": 36,
+    "time_to_merge_goal_by_week8_hours": 24,
+    "human_review_latency_p95_hours": 12,
+    "first_response_assigned_p95_hours": 4,
+    "commit_velocity_growth_pct": [
+      50,
+      100
+    ]
+  },
+  "quality": {
+    "defect_escape_rate_pct_initial": 8,
+    "defect_escape_rate_pct_goal_week12": 5,
+    "rework_cycles_p95_max": 2,
+    "substantive_comment_ratio_min_pct": 70,
+    "pr_size_loc_warn": 400,
+    "review_slice_loc_target": 100
+  },
+  "agent_performance": {
+    "task_scope_max_minutes": 40,
+    "success_rate_initial_pct_range": [
+      70,
+      80
+    ],
+    "success_rate_goal_week4_pct_min": 80,
+    "latency_p95_ms": 200,
+    "latency_first_token_p50_ms": 50
+  },
+  "cost": {
+    "cost_per_success_task_usd_max": 0.5,
+    "human_review_minutes_per_pr": [
+      5,
+      8
+    ],
+    "feature_run_cap_zar": 100,
+    "feature_run_cap_usd": 5.5
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "orchestrator-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20.10"
+  },
+  "scripts": {
+    "plan:dry": "node tools/plan/planDry.mjs",
+    "policy:compliance:dry": "node tools/policy/complianceDry.mjs",
+    "policy:branch:dry": "node tools/policy/branchProtectionDry.mjs",
+    "policy:secrets:dry": "node tools/policy/secretsDry.mjs",
+    "policy:secrets-plan:dry": "node tools/policy/secretsPlanDry.mjs",
+    "budget:dry": "node tools/budget/runBudgetDry.mjs",
+    "metrics:slo:dry": "node tools/metrics/sloDry.mjs",
+    "dev": "npm --workspace apps/orchestrator run dev",
+    "test": "npm --workspace apps/orchestrator run test",
+    "lint": "npm --workspace apps/orchestrator run lint",
+    "format": "npm --workspace apps/orchestrator run format",
+    "smoke:p0": "npm run plan:dry",
+    "smoke:p0.5": "npm run lint && npm test && npm run dev"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vitest": "^2.0.5",
+    "@types/node": "^20.14.10",
+    "tsx": "^4.19.0",
+    "eslint": "^9.11.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "@typescript-eslint/eslint-plugin": "^8.7.0",
+    "prettier": "^3.3.3"
+  },
+  "packageManager": "npm@10"
+}

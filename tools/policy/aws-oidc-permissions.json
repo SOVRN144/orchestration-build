@@ -1,0 +1,42 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadSSMParametersByPath",
+      "Effect": "Allow",
+      "Action": [
+        "ssm:GetParameter",
+        "ssm:GetParameters",
+        "ssm:GetParametersByPath"
+      ],
+      "Resource": [
+        "arn:aws:ssm:REGION:ACCOUNT_ID:parameter/app/dev/*",
+        "arn:aws:ssm:REGION:ACCOUNT_ID:parameter/app/staging/*",
+        "arn:aws:ssm:REGION:ACCOUNT_ID:parameter/app/prod/*"
+      ]
+    },
+    {
+      "Sid": "GetSpecificSecrets",
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:DescribeSecret"
+      ],
+      "Resource": [
+        "arn:aws:secretsmanager:REGION:ACCOUNT_ID:secret:app/dev/*",
+        "arn:aws:secretsmanager:REGION:ACCOUNT_ID:secret:app/staging/*",
+        "arn:aws:secretsmanager:REGION:ACCOUNT_ID:secret:app/prod/*"
+      ]
+    },
+    {
+      "Sid": "DecryptKMS",
+      "Effect": "Allow",
+      "Action": [
+        "kms:Decrypt"
+      ],
+      "Resource": [
+        "arn:aws:kms:REGION:ACCOUNT_ID:key/CMK_ID"
+      ]
+    }
+  ]
+}

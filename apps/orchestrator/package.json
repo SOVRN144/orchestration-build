@@ -1,0 +1,13 @@
+{
+  "name": "@app/orchestrator",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "test": "vitest run",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --check ."
+  }
+}
