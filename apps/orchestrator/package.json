@@ -9,7 +9,8 @@
     "test": "vitest run",
     "lint": "eslint . --ext .ts",
     "format": "prettier --check .",
-    "type-check": "tsc -p tsconfig.json --noEmit"
+    "type-check": "tsc -p tsconfig.json --noEmit",
+    "poc:mock": "tsx src/cli/pocMock.ts"
   },
   "dependencies": {
     "ajv": "^8.17.1",

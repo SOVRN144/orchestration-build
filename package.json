@@ -24,7 +24,8 @@
     "smoke:p0": "npm run plan:dry",
     "smoke:p0.5": "npm run lint && npm test && npm run dev",
     "type-check": "npm run type-check --workspaces --if-present",
-    "check:fast": "npm run format && npm run lint && npm run type-check"
+    "check:fast": "npm run format && npm run lint && npm run type-check",
+    "smoke:p1": "npm --workspace apps/orchestrator run poc:mock"
   },
   "devDependencies": {
     "typescript-eslint": "^8",
