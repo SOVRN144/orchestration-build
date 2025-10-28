@@ -22,7 +22,8 @@
     "lint": "npm --workspace apps/orchestrator run lint",
     "format": "npm --workspace apps/orchestrator run format",
     "smoke:p0": "npm run plan:dry",
-    "smoke:p0.5": "npm run lint && npm test && npm run dev"
+    "smoke:p0.5": "npm run lint && npm test && npm run dev",
+    "check:fast": "npm run plan:dry && npm run lint && npm test"
   },
   "devDependencies": {
     "typescript-eslint": "^8",
