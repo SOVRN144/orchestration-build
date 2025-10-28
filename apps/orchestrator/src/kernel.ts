@@ -30,7 +30,7 @@ export async function runMockLoop(task: string, maxTurns = 3): Promise<DebateRes
     assertValidMessage(impl.msg);
     bus.publish(impl.msg);
 
-    // Check for stagnation (no improvement) after diff update
+    // Check for stagnation: if diff unchanged from previous turn, fail early
     if (isNoImprovement(prevDiff, diff, turn)) {
       return { status: 'FAILED', turns: turn, diff, log: bus.history(), reason: 'NO_IMPROVEMENT' };
     }
