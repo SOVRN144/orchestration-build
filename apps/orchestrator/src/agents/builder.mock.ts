@@ -1,6 +1,10 @@
 import type { Message } from '../schema/messages';
 
-export function builderImplement(task: string, critique: string | null, turn: number): { msg: Message; diff: string } {
+export function builderImplement(
+  task: string,
+  critique: string | null,
+  turn: number
+): { msg: Message; diff: string } {
   let diff = `diff --git a/README.md b/README.md\n`;
   if (critique && critique.includes('missing acceptance checklist')) {
     diff += `+ ## ${task}\n+ - [x] Added context\n+ - [x] Acceptance checklist\n`;
@@ -12,8 +16,8 @@ export function builderImplement(task: string, critique: string | null, turn: nu
       role: 'builder',
       type: 'implement',
       content: 'Produced diff for README.md',
-      turn
+      turn,
     },
-    diff
+    diff,
   };
 }
