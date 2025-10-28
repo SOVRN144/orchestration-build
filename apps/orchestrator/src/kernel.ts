@@ -31,7 +31,7 @@ export async function runMockLoop(task: string, maxTurns = 3): Promise<DebateRes
     bus.publish(impl.msg);
 
     // Check for stagnation (no improvement) after diff update
-    if (turn > 1 && isNoImprovement(prevDiff, diff, turn)) {
+    if (isNoImprovement(prevDiff, diff, turn)) {
       return { status: 'FAILED', turns: turn, diff, log: bus.history(), reason: 'NO_IMPROVEMENT' };
     }
     prevDiff = diff;
