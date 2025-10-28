@@ -25,7 +25,7 @@ addFormats(ajv);
 const validate = ajv.compile<Phase1Message>(schema);
 
 export function validateMessage(data: unknown): boolean {
-  return !!validate(data);
+  return validate(data);
 }
 
 export function assertValidMessage(data: unknown): void {
