@@ -29,7 +29,7 @@ Phase 1 establishes a mock two-agent orchestration loop to validate message sche
 Each Phase 1 run should capture the following commands (all exit 0):
 ```bash
 npm run check:fast  # Repo-wide format, lint, and type-check gates.
-npm test            # Vitest suite (8 specs across schema/loop/kernel) passes.
+npm test            # Vitest suite (11 specs across schema/loop/kernel) passes.
 npm run smoke:p1    # CLI prints diff on line 1, status on line 2, then exits.
 ```
 
