@@ -1,5 +1,8 @@
 # Phase 1 — Two-Agent Loop (All Mocks)
 
+## Objectives
+Phase 1 establishes a mock two-agent orchestration loop to validate message schemas, exit logic, and basic convergence patterns before integrating real LLM agents.
+
 ## Protocol Summary
 - **Message schema:** JSON Schema 2020-12 with Ajv validation
 - **Loop pattern:** propose → implement → critique → verify
@@ -22,6 +25,16 @@
 npm run check:fast  # format + lint + type-check → exit 0
 npm test           # 8 tests pass
 npm run smoke:p1   # prints diff + CONVERGED → exit 0
+```
+
+## Flow Diagram
+```mermaid
+graph LR
+    A[Architect: Propose] --> B[Builder: Implement]
+    B --> C[Architect: Critique]
+    C --> D[Architect: Verify]
+    D -->|Not Verified| A
+    D -->|Verified| E[CONVERGED]
 ```
 
 ## Deliverables Complete
