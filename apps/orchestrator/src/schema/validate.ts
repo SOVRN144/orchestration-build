@@ -1,7 +1,7 @@
 import Ajv2020 from 'ajv/dist/2020';
 import addFormats from 'ajv-formats';
 import type { ErrorObject } from 'ajv';
-import schema from './message.schema.json' assert { type: 'json' };
+import schema from './message.schema.json' with { type: 'json' };
 
 export type Phase1Message = {
   role: 'architect' | 'builder';
