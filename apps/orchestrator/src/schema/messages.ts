@@ -13,4 +13,5 @@ export interface DebateResult {
   turns: number;
   diff?: string;
   log: Message[];
+  reason?: 'NO_IMPROVEMENT' | 'MAX_TURNS';
 }
