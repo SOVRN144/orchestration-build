@@ -16,4 +16,8 @@ jobs:
       - run: npm run plan:dry
       - run: npm run lint
       - run: npm test
+      - name: Type check (Phase-1 DoD)
+        run: npm run type-check
+      - name: Smoke P1 (two-agent loop)
+        run: npm run smoke:p1
       - run: npm run dev
