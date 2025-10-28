@@ -23,7 +23,8 @@
     "format": "npm --workspace apps/orchestrator run format",
     "smoke:p0": "npm run plan:dry",
     "smoke:p0.5": "npm run lint && npm test && npm run dev",
-    "check:fast": "npm run plan:dry && npm run lint && npm test"
+    "type-check": "npm run type-check --workspaces --if-present",
+    "check:fast": "npm run format && npm run lint && npm run type-check"
   },
   "devDependencies": {
     "typescript-eslint": "^8",
@@ -34,7 +35,8 @@
     "eslint": "^9.11.0",
     "@typescript-eslint/parser": "^8.7.0",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "eslint-config-prettier": "^9.1.0"
   },
   "packageManager": "npm@10.2.0"
 }
