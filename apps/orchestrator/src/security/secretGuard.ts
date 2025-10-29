@@ -40,6 +40,7 @@ export function assertNoRealSecrets(candidate: unknown): void {
       const match = node.str.match(re);
       if (!match) continue;
       const value = match[0];
+      // Allow common test/example prefixes used by providers or in tests
       if (value.startsWith('sk_test_') || value.startsWith('test_') || value.startsWith('example_'))
         continue;
       hits.push(`${name} at "${node.path}"`);
