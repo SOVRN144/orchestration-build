@@ -4,14 +4,20 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build-test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v5.0.0
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af  # v6.1.0
         with:
           node-version: 20
+          cache: 'npm'
       - run: npm ci
       - run: npm run plan:dry
       - run: npm run lint
@@ -20,4 +26,6 @@ jobs:
         run: npm run type-check
       - name: Smoke P1 (two-agent loop)
         run: npm run smoke:p1
-      - run: npm run dev
+      # Dev servers/watchers are not suitable for CI. Replace with a fast check or remove.
+      # - run: npm run dev
+      - run: npm run check:fast
