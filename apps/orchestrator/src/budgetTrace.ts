@@ -15,8 +15,13 @@ export interface BudgetTrace {
 
 export function createStubBudgetTrace(init: Partial<BudgetTrace> = {}): BudgetTrace {
   const timestamp = init.timestamp ?? new Date().toISOString();
-  const inputTokens = init.inputTokens ?? 0;
-  const outputTokens = init.outputTokens ?? 0;
+  const toNonNegInt = (value: unknown) => {
+    const numeric = typeof value === 'number' ? value : value === undefined ? 0 : Number(value);
+    if (!Number.isFinite(numeric)) return 0;
+    return Math.max(0, Math.trunc(numeric));
+  };
+  const inputTokens = toNonNegInt(init.inputTokens);
+  const outputTokens = toNonNegInt(init.outputTokens);
 
   return {
     schemaVersion: '1.0.0',

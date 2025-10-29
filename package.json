@@ -26,7 +26,7 @@
     "type-check": "npm run type-check --workspaces --if-present",
     "check:fast": "npm run format && npm run lint && npm run type-check",
     "smoke:p1": "npm --workspace apps/orchestrator run poc:mock",
-    "poc:budget": "npm --workspace apps/orchestrator run poc:budget"
+    "poc:budget": "npm --workspace apps/orchestrator run poc:budget --"
   },
   "devDependencies": {
     "typescript-eslint": "^8",

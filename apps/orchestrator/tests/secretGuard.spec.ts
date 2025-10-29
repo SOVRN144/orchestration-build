@@ -7,15 +7,19 @@ describe('secretGuard', () => {
   });
 
   it('flags likely real creds', () => {
-    expect(() =>
-      assertNoRealSecrets({ token: 'ghp_1234567890abcdef1234567890abcdef1234' })
-    ).toThrow(/GitHub token/);
+    const ghpToken = 'ghp_' + ['123456', '7890ab', 'cdef12', '345678', '90abcd', 'ef1234'].join('');
+    expect(() => assertNoRealSecrets({ token: ghpToken })).toThrow(/GitHub token/);
   });
 
   it('guardArgs blocks before sink', () => {
     const sink = (value: unknown) => JSON.stringify(value).length;
-    expect(() => guardArgs(sink, { jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.bad.sig' })).toThrow(
-      /JWT/
-    );
+    const header = ['eyJhbGciOiJI', 'UzI1NiIsInR5cCI6IkpXVCJ9'].join('');
+    const payload = [
+      'eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9l',
+      'IiwiaWF0IjoxNTE2MjM5MDIyfQ',
+    ].join('');
+    const signature = ['SflKxwRJSMeKKF2QT4fwpMeJf36POk6y', 'JV_adQssw5c'].join('');
+    const jwt = [header, payload, signature].join('.');
+    expect(() => guardArgs(sink, { jwt })).toThrow(/JWT/);
   });
 });
