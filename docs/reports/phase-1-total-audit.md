@@ -11,7 +11,7 @@ Tooling / CI / Security / Logging / BudgetTrace / Docs = PASS / PASS / PASS / PA
 | 1E | Green | docs/architecture/branching-and-merge.md:1; tools/policy/branchProtectionDry.mjs:1 | Trunk/FF workflow captured; branch protection payload scripted | — |
 | 1F | Green | apps/orchestrator/tests/setup.ts:1; apps/orchestrator/vitest.config.ts:1 | UTC, fake timers, randomUUID stub, and coverage disabled for stability | — |
 | 1G | Green | apps/orchestrator/src/logging/otelLogger.stub.ts:1; apps/orchestrator/tests/logger.stub.spec.ts:1 | OTEL stub emits severityNumber, traceFlags, schemaVersion, msg/body fields | — |
-| 1H | Green | .github/workflows/ci.yml:1; docs/architecture/red-bar-demo.md:1 | CI pins actions, sets TZ=UTC, runs type-check before tests; red-bar process documented | — |
+| 1H | Green | .github/workflows/ci.yml:1; docs/architecture/red-bar-demo.md:1 | CI pins actions, runs type-check before tests; red-bar process documented | — |
 | 1I | Green | docs/architecture/logging-strategy.md:1; apps/orchestrator/src/logging/otelLogger.stub.ts:1 | Structured logging guide published with Phase-1 schema and stub implementation | — |
 | 1J | Green | .gitignore:1; .env.example:1; docs/policies/phase1-security.md:1; apps/orchestrator/tests/secretGuard.spec.ts:1 | Env hygiene, fake fixtures, and secret guard test all in place | — |
 | 1K | Green | apps/orchestrator/src/budgetTrace.ts:1; apps/orchestrator/tests/budgetTrace.spec.ts:1; apps/orchestrator/src/cli/pocBudget.ts:1 | BudgetTrace stub reduced to contract and exercised via CLI/test | — |
