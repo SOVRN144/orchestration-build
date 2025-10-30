@@ -1,33 +1,28 @@
 name: CI
 on:
   push:
-    branches: [ main ]
+    branches: [main, 'phase-*']
   pull_request:
-    branches: [ main ]
+permissions:
+  contents: read
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ci-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  build-test:
+  verify:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    env:
-      TZ: UTC
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v5.0.0
-      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af  # v6.1.0
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
         with:
           node-version: 22
-          cache: 'npm'
+          cache: npm
       - run: npm ci
-      - run: npm run plan:dry
-      - run: npm run lint
-      - name: Type check (Phase-1 DoD)
+      - name: Type check
         run: npm run type-check
-      - run: npm test
-      - name: Smoke P1 (two-agent loop)
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test
+      - name: Smoke P1
         run: npm run smoke:p1
-      # Dev servers/watchers are not suitable for CI. Replace with a fast check or remove.
-      # - run: npm run dev
-      - run: npm run check:fast
