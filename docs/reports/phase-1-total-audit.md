@@ -22,7 +22,7 @@ Tooling / CI / Security / Logging / BudgetTrace / Docs = PASS / PASS / PASS / PA
 - **JSONL logging + redaction paths documented:** Pass — stub emits OTEL-aligned JSONL, redacts sensitive keys, and strategy doc captures the field contract (apps/orchestrator/src/logging/otelLogger.stub.ts:1; docs/architecture/logging-strategy.md:1; apps/orchestrator/tests/logger.stub.spec.ts:1).
 - **CI: SHA-pinned actions + least-privilege permissions:** Pass — CI pins checkout/setup-node, sets `permissions: contents: read`, runs type-check before tests ( .github/workflows/ci.yml:1).
 - **Deterministic tests (UTC, fake timers, seeded randomness):** Pass — setup locks TZ/clock and stubs `crypto.randomUUID` while vitest disables coverage (apps/orchestrator/tests/setup.ts:1; apps/orchestrator/vitest.config.ts:1).
-- **Red-bar demo present:** Pass — run `npm run demo:redbar:lint` / `npm run demo:redbar:ts` to trigger lint + TypeScript failures via `demos/red-bar/` (package.json:22-33; docs/architecture/red-bar-demo.md:1).
+- **Red-bar demo present:** Pass — run `npm run demo:redbar:lint` / `npm run demo:redbar:ts` to trigger lint + TypeScript failures via `demos/red-bar/` (package.json:30-31; docs/architecture/red-bar-demo.md:1).
 
 ### 3) Diff-Ready Micropatches (documentation/config only)
 - None — all Phase-1 acceptance criteria are satisfied.
