@@ -17,6 +17,9 @@ export function builderImplement(
       type: 'implement',
       content: 'Produced diff for README.md',
       turn,
+      reasons: ['mock-diff'],
+      evidence: [diff.split('\n')[1] ?? ''],
+      risks: diff.includes('[ ]') ? ['incomplete-checklist'] : [],
     },
     diff,
   };
