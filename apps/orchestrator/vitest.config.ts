@@ -7,10 +7,6 @@ export default defineConfig({
     exclude: ['**/node_modules/**', '**/dist/**', '**/coverage/**'],
     globals: false,
     setupFiles: ['tests/setup.ts'],
-    coverage: {
-      enabled: true,
-      reporter: ['text', 'html'],
-      exclude: ['**/node_modules/**', '**/dist/**', '**/tests/**'],
-    },
+    coverage: { enabled: false },
   },
 });

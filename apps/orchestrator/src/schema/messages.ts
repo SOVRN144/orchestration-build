@@ -6,6 +6,9 @@ export interface Message {
   type: MessageType;
   content: string;
   turn: number;
+  reasons?: string[];
+  evidence?: string[];
+  risks?: string[];
 }
 
 export interface DebateResult {
