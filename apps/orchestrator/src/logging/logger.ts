@@ -27,5 +27,9 @@ export function createLogger(options: LoggerOptions = {}, destination?: Destinat
 export const logger = createLogger();
 
 export function logTurn(entry: OrchestratorLog) {
-  logger.info(entry, 'turn');
+  if (entry.status === 'error') {
+    logger.error(entry, 'turn');
+  } else {
+    logger.info(entry, 'turn');
+  }
 }

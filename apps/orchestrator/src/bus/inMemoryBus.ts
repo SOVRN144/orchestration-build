@@ -21,10 +21,14 @@ export class InMemoryBus {
   private seq = 0;
 
   constructor(capacity = 200) {
-    if (!Number.isFinite(capacity) || capacity <= 0) {
+    if (!Number.isFinite(capacity)) {
+      throw new Error('Bus capacity must be a finite number');
+    }
+    const truncated = Math.trunc(capacity);
+    if (truncated < 1 || truncated !== capacity) {
       throw new Error('Bus capacity must be a positive integer');
     }
-    this.capacity = Math.trunc(capacity);
+    this.capacity = truncated;
   }
 
   publish(message: Message, options: PublishOptions = {}): Envelope<Message> {
