@@ -14,7 +14,12 @@ describe('otelLogger.stub', () => {
     const obj = JSON.parse(line);
     expect(obj.timestamp).toMatch(/T/);
     expect(obj.severity).toBe('INFO');
+    expect(obj.severityNumber).toBe(9);
     expect(obj.event).toBe('phase1-test');
+    expect(obj.msg).toBe('phase1-test');
+    expect(obj.body).toBe('phase1-test');
+    expect(obj.schemaVersion).toBe('1.0.0');
+    expect(obj.traceFlags).toBe('00');
     expect(obj.resource.service).toBe('orchestrator');
     expect(obj.data.authorization).toBe('[REDACTED]');
     expect(obj.data.token).toBe('[REDACTED]');
