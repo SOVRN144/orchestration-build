@@ -48,7 +48,7 @@ npm run smoke:p1    # Phase 1 smoke test
 - Message schema & validation
 - Loop convergence (3 exit paths)
 - Event bus (envelope-based)
-- Logging (Pino JSONL + redaction)
+- Logging (OTEL stub JSONL + redaction)
 - Budget trace (stubbed)
 - Security guards (secretGuard)
 - Deterministic tests (15/15 passing)
