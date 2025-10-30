@@ -36,12 +36,29 @@ export function formatOtelJsonl(input: {
   traceId?: string;
   spanId?: string;
   data?: Record<string, unknown>;
+  message?: string;
+  traceFlags?: string;
 }): string {
   const now = new Date().toISOString();
+  const severity = input.severity ?? 'INFO';
+  const severityNumberMap: Record<Severity, number> = {
+    DEBUG: 5,
+    INFO: 9,
+    WARN: 13,
+    ERROR: 17,
+  };
+  const safeMessageValue = input.message ?? input.event;
+  const safeMessage =
+    typeof safeMessageValue === 'string' ? redact(safeMessageValue) : safeMessageValue;
   return JSON.stringify({
     timestamp: now,
-    severity: input.severity ?? 'INFO',
+    severity,
+    severityNumber: severityNumberMap[severity],
+    traceFlags: input.traceFlags ?? '00',
+    schemaVersion: '1.0.0',
     event: input.event,
+    msg: safeMessage,
+    body: safeMessage,
     resource: input.resource ?? { service: 'orchestrator', env: 'local' },
     traceId: input.traceId ?? 'trace-stub',
     spanId: input.spanId ?? 'span-stub',

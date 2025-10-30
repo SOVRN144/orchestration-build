@@ -1,0 +1,7 @@
+{
+  "extends": "../../apps/orchestrator/tsconfig.json",
+  "include": ["./ts-fail.ts"],
+  "compilerOptions": {
+    "noEmit": true
+  }
+}
