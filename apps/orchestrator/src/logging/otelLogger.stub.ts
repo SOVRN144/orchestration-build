@@ -1,5 +1,15 @@
 type Severity = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR';
-const SENSITIVE_KEYS = new Set(['authorization', 'token', 'password', 'cookie']);
+const SENSITIVE_KEYS = new Set([
+  'authorization',
+  'token',
+  'password',
+  'cookie',
+  'api_key',
+  'apikey',
+  'secret',
+  'private_key',
+  'privatekey',
+]);
 
 function redact(value: unknown): unknown {
   if (Array.isArray(value)) {
